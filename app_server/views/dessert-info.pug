@@ -1,33 +1,15 @@
 extends layout
-include _includes/sharedHTMLfunctions.pug
 
 block content
-  each dessert in desserts
-    .row
-      .col-12.col-md-8
-        .card
-          .card-block
-            h2= dessert.name
-            img.dessert-image(src=dessert.image, alt=dessert.name)
+  .row.banner
+    .col-12
+      h1= pageHeader.title
+        small &nbsp;#{pageHeader.strapline}
+  
+  .row
+    .col-12.col-md-8
+      .error= message
+      app-root Loading delicious desserts...
 
-            .rating-section
-              h4 
-                strong Rating: #{dessert.ratingText} (#{dessert.reviewCount} reviews)
-              div 
-                +outputRating(dessert.rating)
-
-            h3 Ingredients
-            ul
-              each item in dessert.ingredients
-                li
-                  strong= item.name + ':'
-                  |  #{item.description}
-
-            h3 Preparation Steps
-            ol
-              each step in dessert.steps
-                li= step
-
-      .col-12.col-md-4
-        h2 Description
-        p.lead= dessert.description
+block scripts
+  script(src='/browser/main-5EG7VLG6.js')

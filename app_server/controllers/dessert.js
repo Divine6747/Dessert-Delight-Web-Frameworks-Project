@@ -11,10 +11,14 @@ if (process.env.NODE_ENV === 'production') {
 const renderDessertList = function (req, res, responseBody) {
     res.render('dessert-info', {
         title: 'Simple Dessert Recipes',
-        desserts: responseBody
+        pageHeader: {
+            title: 'Dessert Delight',
+            strapline: 'Find delicious desserts near you!'
+        },
+        desserts: [],
+        message: ''
     });
 };
-
 const dessertList = function (req, res) {
     const path = '/api/dessert';
 
