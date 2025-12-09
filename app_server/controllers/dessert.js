@@ -46,7 +46,7 @@ const renderDessertDetails = function (req, res, responseBody) {
 };
 
 const dessertReadOne = function (req, res) {
-    const path = '/api/dessert/${req.params.id}';
+    const path = `/api/dessert/${req.params.id}`;
 
     const requestOptions = {
         url: apiOptions.server + path,

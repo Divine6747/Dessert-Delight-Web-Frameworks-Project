@@ -9,5 +9,4 @@ const aboutSchema = new mongoose.Schema({
   motto: String
 });
 
-// Register the model
 mongoose.model('About', aboutSchema);

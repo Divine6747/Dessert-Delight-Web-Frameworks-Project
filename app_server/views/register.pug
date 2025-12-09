@@ -13,43 +13,27 @@ html
         h3.register-title Register
 
       .register-card-body.card-body
-        form.register-form(method='POST', action='/api/auth/register')
-
-          .register-input-group.input-group
-              .register-input-prepend.input-group-prepend
-                span.register-input-text.input-group-text
-                  i.fas.fa-id-card
-              input.register-input.form-control(type='text', placeholder='First Name', name='firstName')
-
-          .register-input-group.input-group
-              .register-input-prepend.input-group-prepend
-                span.register-input-text.input-group-text
-                  i.fas.fa-id-card
-              input.register-input.form-control(type='text', placeholder='Last Name', name='lastName')
-
+        if error && error.length > 0
+          .alert.alert-danger(role="alert")= error
+        
+        form.register-form(method='POST', action='/register')
           .register-input-group.input-group
             .register-input-prepend.input-group-prepend
               span.register-input-text.input-group-text
                 i.fas.fa-user
-            input.register-input.form-control(type='text', placeholder='Username', name='username')
-
-          .register-input-group.input-group
-            .register-input-prepend.input-group-prepend
-              span.register-input-text.input-group-text
-                i.fas.fa-envelope
-            input.register-input.form-control(type='email', placeholder='Email', name='email')
+            input.register-input.form-control(type='text', placeholder='Username', name='username', required, minlength="5")
 
           .register-input-group.input-group
             .register-input-prepend.input-group-prepend
               span.register-input-text.input-group-text
                 i.fas.fa-key
-            input.register-input.form-control(type='password', placeholder='Password', name='password')
+            input.register-input.form-control(type='password', placeholder='Password', name='password', required, minlength="7")
 
           .register-input-group.input-group
             .register-input-prepend.input-group-prepend
               span.register-input-text.input-group-text
                 i.fas.fa-key
-            input.register-input.form-control(type='password', placeholder='Confirm Password', name='confirmPassword')
+            input.register-input.form-control(type='password', placeholder='Confirm Password', name='confirmPassword', required)
 
           input.register-btn.btn(type='submit', value='Sign Up')
 
@@ -57,3 +41,51 @@ html
         .register-links
           | Already have an account?
           a(href='/login') Login
+
+script.
+  document.querySelector('.register-form').addEventListener('submit', function(e) {
+    const username = document.querySelector('input[name="username"]').value.trim();
+    const password = document.querySelector('input[name="password"]').value;
+    const confirmPassword = document.querySelector('input[name="confirmPassword"]').value;
+    
+    const errors = [];
+    
+    if (!username || !password || !confirmPassword) {
+      errors.push("Please fill in all fields.");
+    }
+    
+    if (username.length < 5) {
+      errors.push("Username must be at least 5 characters.");
+    }
+    
+    if (password.length < 7) {
+      errors.push("Password must be at least 7 characters.");
+    }
+    
+    if (password !== confirmPassword) {
+      errors.push("Passwords do not match.");
+    }
+    
+    if (errors.length > 0) {
+      e.preventDefault();
+      
+      let userError = '<div class="alert alert-danger" role="alert">';
+      userError += '<h5>Please fix the following errors:</h5><ul>';
+      errors.forEach(error => {
+        userError += `<li>${error}</li>`;
+      });
+      userError += '</ul></div>';
+      
+      const existingError = document.querySelector('.form-errors');
+      if (existingError) {
+        existingError.remove();
+      }
+      
+      const errorDiv = document.createElement('div');
+      errorDiv.className = 'form-errors';
+      errorDiv.innerHTML = userError;
+      this.parentNode.insertBefore(errorDiv, this);
+      
+      return false;
+    }
+  });

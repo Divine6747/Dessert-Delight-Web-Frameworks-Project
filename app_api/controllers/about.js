@@ -5,7 +5,7 @@ const About = mongoose.model('About');
 const aboutList = (req, res) => {
   About.find()
     .then(abouts => {
-      res.status(200).json(abouts); // API JSON response
+      res.status(200).json(abouts);
     })
     .catch(err => {
       res.status(500).json({ message: "Error fetching about data", error: err });

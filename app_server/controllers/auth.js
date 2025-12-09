@@ -1,14 +1,14 @@
 /*GET login page*/
 const login = function(req, res){
-    res.render('login', {title: 'Login'});
+    res.render('login', { title: 'Login' });
 };
 
-/*GEt registation page*/
+/*GET registration page*/
 const register = function(req, res){
-    res.render('register', {title: 'Register'});
+    res.render('register', { title: 'Register' });
 };
 
 module.exports = {
     login,
     register
-}
+};

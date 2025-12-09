@@ -18,17 +18,27 @@ html
         #navbarMain.navbar-collapse.collapse
           ul.navbar-nav.mr-auto
             li.nav-item
-              a.nav-link(href='/') Home
-                i.fa-solid.fa-cake-candles.icon-home <!--Bootstraps Icon-->
-            li.nav-item
-              a.nav-link(href='/login/') Login
-                i.fa-solid.fa-right-to-bracket.icon-login
-            li.nav-item
-              a.nav-link(href='/register/') Register
-                i.fa-solid.fa-user-plus.icon-register
+              a.nav-link(href='/dessert') Home
+                i.fa-solid.fa-cake-candles.icon-home
             li.nav-item
               a.nav-link(href='/about/') About
-                i.bi.bi-info-circle.icon-about <!--Bootstraps Icon-->
+                i.bi.bi-info-circle.icon-about
+            
+            if user
+              li.nav-item
+                span.nav-link.text-white
+                  i.fa-solid.fa-user
+                  span.ml-2 Welcome, #{user.username}!
+              li.nav-item
+                a.nav-link(href='/logout') Logout
+                  i.fa-solid.fa-right-from-bracket.icon-logout.ml-2
+            else
+              li.nav-item
+                a.nav-link(href='/login/') Login
+                  i.fa-solid.fa-right-to-bracket.icon-login
+              li.nav-item
+                a.nav-link(href='/register/') Register
+                  i.fa-solid.fa-user-plus.icon-register
     .container
       block content
       footer
@@ -39,4 +49,3 @@ html
     script(src='https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js')
     script(src='/javascripts/bootstrap.min.js')
     block scripts
-

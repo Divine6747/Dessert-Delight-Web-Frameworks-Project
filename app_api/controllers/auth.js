@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 
 const userRegister = async (req, res) => {
-    const { firstName, lastName, username, email, password, confirmPassword } = req.body;
+    const { username, password, confirmPassword } = req.body;
 
-    if (!firstName || !lastName || !username || !email || !password || !confirmPassword) {
+    if (!username || !password || !confirmPassword) {
         return res.status(400).json({ error: "Please fill in all required fields." });
     }
 
@@ -17,28 +17,25 @@ const userRegister = async (req, res) => {
         return res.status(400).json({ error: "Your password must be at least 7 characters long." });
     }
 
+    if (username.length < 5) {
+        return res.status(400).json({ error: "Username must be at least 5 characters." });
+    }
+
     try {
         const existingUser = await User.findOne({ username });
         if (existingUser) {
             return res.status(400).json({ error: "This username is already taken." });
         }
 
-        const existingEmail = await User.findOne({ email });
-        if (existingEmail) {
-            return res.status(400).json({ error: "This email address is already in use." });
-        }
-
         const newUser = new User({
-            firstName,
-            lastName,
             username,
-            email,
             password
         });
 
         await newUser.save();
         return res.status(200).json({ status: "success" });
     } catch (err) {
+        console.error('Registration error:', err);
         return res.status(500).json({ error: "Something went wrong. Please try again later." });
     }
 };
@@ -56,12 +53,14 @@ const userLogin = async (req, res) => {
             return res.status(400).json({ error: "We couldn't find an account with that username." });
         }
 
-        if (user.password !== password) {
+        const isMatch = await user.authenticate(password);
+        if (!isMatch) {
             return res.status(400).json({ error: "The password you entered is incorrect." });
         }
 
         return res.status(200).json({ status: "success" });
     } catch (err) {
+        console.error('Login error:', err);
         return res.status(500).json({ error: "Something went wrong. Please try again later." });
     }
 };

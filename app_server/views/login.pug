@@ -10,25 +10,64 @@ html
   body.login-page
     .login-card.card
       .login-card-header.card-header
-        h3.login-title Login In
+        h3.login-title Login
 
       .login-card-body.card-body
-        form.login-form(method='POST', action='/api/auth/login')
+        // Flash messages
+        if error && error.length > 0
+          .alert.alert-danger(role="alert")= error
+        
+        form.login-form(method='POST', action='/login')
           .login-input-group.input-group
             .login-input-prepend.input-group-prepend
               span.login-input-text.input-group-text
                 i.fas.fa-user
-            input.login-input.form-control(type='text', placeholder='Username', name='username')
+            input.login-input.form-control(type='text', placeholder='Username', name='username', required)
 
           .login-input-group.input-group
             .login-input-prepend.input-group-prepend
               span.login-input-text.input-group-text
                 i.fas.fa-key
-            input.login-input.form-control(type='password', placeholder='Password', name='password')
+            input.login-input.form-control(type='password', placeholder='Password', name='password', required)
 
           input.login-btn.btn(type='submit', value='Login')
 
       .login-card-footer.card-footer
         .login-links
-          | Don’t have an account?
+          | Don't have an account?
           a.login-signup-link(href='/register') Sign Up
+
+    // JavaScript validation
+    script.
+      document.querySelector('.login-form').addEventListener('submit', function(e) {
+        const username = document.querySelector('input[name="username"]').value.trim();
+        const password = document.querySelector('input[name="password"]').value;
+        
+        const errors = [];
+        
+        if (!username || !password) {
+          errors.push("Please enter both username and password.");
+        }
+        
+        if (errors.length > 0) {
+          e.preventDefault();
+          
+          let userError = '<div class="alert alert-danger" role="alert">';
+          errors.forEach(error => {
+            userError += `<p>${error}</p>`;
+          });
+          userError += '</div>';
+          
+          const existingError = document.querySelector('.form-errors');
+          if (existingError) {
+            existingError.remove();
+          }
+          
+          const errorDiv = document.createElement('div');
+          errorDiv.className = 'form-errors';
+          errorDiv.innerHTML = userError;
+          this.parentNode.insertBefore(errorDiv, this);
+          
+          return false;
+        }
+      });
