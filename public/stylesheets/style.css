@@ -25,7 +25,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-brand img {
-  max-height: 115px;
+  max-height: 120px;
   width: auto;
   display: block;
 }
@@ -52,77 +52,177 @@ h1, h2, h3, h4, h5, h6 {
   vertical-align: middle;
 }
 
-/* Icon Colors */
 .icon-home { color: #914dff; }
 .icon-login { color: #157878; }
 .icon-register { color: #ed6464; }
 .icon-about { color: #ff0000; }
 
-/* Banner */
 .banner {
   margin-top: 5em;
 }
 
-/* Dessert Header */
-.col-12.dessert-header hr {
-  background-color: #e4cfef;
-  border-radius: 10px;
-  margin-bottom: 1.5em;
-  height: 0.2em;
-}
 
 h1 small {
   color: #aaa;
 }
+@media (max-width: 1400px) {
+  .navbar-nav { 
+    padding-left: 120px; 
+  }
+  .navbar-nav .nav-item { 
+    margin-right: 40px; 
+  }
+}
 
-/* Responsive Navbar Adjustments */
+
 @media (max-width: 1200px) {
   .navbar-nav { padding-left: 100px; }
   .navbar-nav .nav-item { margin-right: 20px; }
 }
 
-@media (max-width: 992px) {
-  .navbar-nav {
-    flex-direction: column;
-    padding-left: 0;
-    text-align: center;
+@media (max-width: 1090px) {
+  body {
+    padding-top: 100px;
   }
-  .navbar-nav .nav-item {
-    margin-right: 0;
-    margin-bottom: 10px;
+  
+  .navbar {
+    padding: 8px 0;
+  }
+  
+  .navbar-brand img {
+    max-height: 120px;
+    margin-right: -100px;
+    margin-left: 50px;
+  }
+  .banner {
+    margin-top: 3em;
+  }
+  
+  .navbar-nav .nav-item .nav-link {
+    justify-content: center;
+    font-size: 1.1rem;
+    margin-right: -20px;
+    margin-left: 20px;
   }
 }
 
 @media (max-width: 576px) {
-  .navbar-nav { font-size: 0.9rem; }
+  .navbar-nav { 
+    font-size: 0.9rem; 
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-top: 90px;
+  }
+  
+  .navbar-brand img {
+    max-height: 70px;
+  }
+  
+  .navbar-toggler {
+    font-size: 1.1rem;
+    padding: 6px 10px;
+  }
+  
+  .banner {
+    margin-top: 2em;
+  }
+  
+  h1 {
+    font-size: 2.2rem;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar-nav .nav-item .nav-link {
+    font-size: 1rem;
+    padding: 12px 15px;
+  }
+  
+  .navbar-nav .nav-item .nav-link i {
+    margin-left: 12px;
+  }
+  
+  .navbar-brand img {
+    max-height: 90px;
+  }
+  
+  .navbar-toggler {
+    font-size: 1rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.6rem;
+  }
+}
+
+.container {
+  max-width: 1600px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center !important; 
+}
+
+.row.mb-5 {
+  width: 100% !important;
+}
+
+.col-12.col-md-8 {
+  flex: 0 0 75% !important;
+  max-width: 75% !important;
+}
+
+.col-12.col-md-4 {
+  flex: 0 0 25% !important;
+  max-width: 25% !important;
 }
 
 /* Dessert Cards */
+
+.dessert-image {
+ display: block;
+  margin: 0 auto 20px auto;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
 .card {
   background-color: #469ea8;
+  margin-bottom: 30px;
   border-radius: 30px;
   padding: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    width: 95% !important;
 }
 
 .card-block {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 100%;
 }
 
 .card h2 {
   text-align: center;
   width: 100%;
   margin-bottom: 25px;
-}
-
-.dessert-image {
-  display: block;
-  margin: 0 auto 20px auto;
-  max-width: 100%;
-  height: auto;
-  border-radius: 15px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  font-size: 2.5rem;
 }
 
 .rating-section {
@@ -131,6 +231,7 @@ h1 small {
   gap: 10px;
   margin: 15px 0;
   line-height: 1.5;
+  width: 100%;
 }
 
 .rating-section h4 {
@@ -140,7 +241,6 @@ h1 small {
   font-family: 'Cabin', Arial, sans-serif;
 }
 
-/* Ingredients & Steps */
 .row {
   margin-top: 70px;
 }
@@ -155,29 +255,145 @@ h1 small {
   padding-bottom: 60px;
 }
 
-/* Description Column */
 .col-12.col-md-4 h2 {
-  padding-top: 100px;
+  padding-top: 150px;
+  margin-bottom: 20px;
+  font-size: 2.2rem;
+}
+@media (max-width: 1199px) and (min-width: 1000px) {
+  .col-12.col-md-8 {
+    flex: 0 0 calc(70% - 15px) !important;
+    max-width: calc(70% - 15px) !important;
+  }
+  
+  .col-12.col-md-4 {
+    flex: 0 0 calc(30% - 15px) !important;
+    max-width: calc(30% - 15px) !important;
+  }
+  
+  .card h2 {
+    font-size: 2.2rem;
+  }
+  
+  .dessert-image {
+    height: 320px;
+  }
 }
 
 @media (max-width: 767px) {
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100% !important;
+  }
+  
   .col-12.col-md-4 h2 {
-    padding-top: 2px;
+    padding-top: 10px;
     text-align: center;
-    font-size: 40px;
+    font-size: 32px;
+    margin-bottom: 15px;
   }
+  
   .col-12.col-md-4 p {
-    font-size: 22px;
+    font-size: 18px;
+    text-align: center;
+    line-height: 1.5;
   }
+  
   .col-12.col-md-4 p.lead {
-    margin-top: 5px;
+    margin-top: 10px;
+    font-size: 20px;
+    padding: 15px;
   }
+  
   .row {
-    margin-top: 40px;
+    margin-top: 30px;
+  }
+  
+  .col-12.col-md-8,
+  .col-12.col-md-4 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  
+  .col-12.col-md-8 {
+    padding-right: 0 !important;
+    padding-bottom: 40px;
+  }
+  
+  .dessert-image {
+    height: 280px;
+    width: 95% !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .card {
+    padding: 15px;
+    border-radius: 20px;
+  }
+  
+  .card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+  
+  .rating-section h4 {
+    font-size: 1.2rem;
+  }
+  
+  .card h3 {
+    font-size: 1.6rem;
+  }
+  
+  .card ul,
+  .card ol {
+    margin-left: 15px;
+    padding-left: 15px;
+    font-size: 1rem;
   }
 }
 
-/* Star Ratings */
+@media (min-width: 1200px) {
+  .col-12.col-md-8 {
+    flex: 0 0 78% !important;
+    max-width: 78% !important;
+  }
+  
+  .col-12.col-md-4 {
+    flex: 0 0 22% !important;
+    max-width: 22% !important;
+  }
+  
+  .dessert-image {
+    height: 380px !important;
+  }
+}
+
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1700px !important;
+  }
+  
+  .col-12.col-md-8 {
+    flex: 0 0 calc(78% - 15px) !important;
+    max-width: calc(78% - 15px) !important;
+  }
+  
+  .col-12.col-md-4 {
+    flex: 0 0 calc(22% - 15px) !important;
+    max-width: calc(22% - 15px) !important;
+  }
+  
+  .dessert-image {
+    height: 400px !important;
+  }
+  
+  .card h2 {
+    font-size: 3rem;
+  }
+}
 .fa-star, .fa-star-o {
   font-size: 1rem;
 }
@@ -189,7 +405,6 @@ h1 small {
   color: #ddd; 
 }
 
-/* Login & Registration */
 .login-page, .register-page {
   height: 100vh;
   display: flex;
@@ -201,14 +416,13 @@ h1 small {
 
 .login-card, .register-card {
   width: 650px;
-  max-width: 90%;
+  max-width: 50%;
   background-color: rgba(0,0,0,0.7) !important;
   padding: 30px 20px;
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0,0,0,0.5);
   display: flex;
   flex-direction: column;
-  align-items: stretch;
 }
 
 .login-card-header h3.login-title,
@@ -251,3 +465,31 @@ h1 small {
 .register-links a {
   margin-left: 4px;
 }
+
+@media (max-width: 768px) {
+  .login-page, .register-page {
+    padding: 15px;
+    height: auto;
+    min-height: 100vh;
+  }
+  
+  .login-card, .register-card {
+    width: 90%;
+    max-width: 400px;
+    padding: 25px 15px;
+    margin: 20px 0;
+  }
+  
+  .login-card-header h3.login-title,
+  .register-card-header h3.register-title {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  .login-btn,
+  .register-btn {
+    padding: 12px;
+    font-size: 15px;
+  }
+}
+
