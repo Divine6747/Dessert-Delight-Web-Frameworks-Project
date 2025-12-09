@@ -11,10 +11,6 @@ if (process.env.NODE_ENV === 'production') {
 const renderDessertList = function (req, res, responseBody) {
     res.render('dessert-info', {
         title: 'Simple Dessert Recipes',
-        pageHeader: {
-            title: 'Dessert Delight',
-            strapline: 'Find delicious desserts near you!'
-        },
         desserts: [],
         message: ''
     });
