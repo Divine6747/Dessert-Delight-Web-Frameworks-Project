@@ -5,7 +5,7 @@ const apiOptions = {
 };
 
 if (process.env.NODE_ENV === 'production') {
-    apiOptions.server = 'https://web-frameworks-project-xcuw.onrender.com';
+    apiOptions.server = 'https://helloexpree-do-dessert-delight-web.onrender.com';
 }
 
 const renderDessertList = function (req, res, responseBody) {
