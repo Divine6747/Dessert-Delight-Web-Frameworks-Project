@@ -67,10 +67,10 @@ router.get('/logout', (req, res) => {
         if (err) {
             console.error('Logout error:', err);
             req.flash('error', 'Error logging out');
-            return res.redirect('/');
+            return res.redirect('/login');
         }
         req.flash('success', 'Logged out successfully');
-        res.redirect('/');
+        res.redirect('/login');
     });
 });
 
