@@ -7,6 +7,9 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
 const flash = require('connect-flash');
+const fs = require('fs');
+const http = require('http');
+const https = require('https');
 require('./app_api/models/db');
 require('./app_api/config/passport');
 
@@ -71,5 +74,24 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// SSL IMPLEMENTATION
+var privateKey = fs.readFileSync('key.pem', 'utf8');
+var certificate = fs.readFileSync('cert.pem', 'utf8');
+var credentials = { key: privateKey, cert: certificate };
+
+// Create HTTP and HTTPS servers
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(credentials, app);
+
+// Start servers on different ports
+httpServer.listen(8000, () => {
+  console.log('HTTP Server running at http://localhost:8000/');
+});
+
+httpsServer.listen(443, () => {
+  console.log('HTTPS Server running at https://localhost:443/');
+});
+
 
 module.exports = app;
