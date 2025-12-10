@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === 'production') {
 const renderDessertList = function (req, res, responseBody) {
     res.render('dessert-info', {
         title: 'Simple Dessert Recipes',
-        desserts: [],
+        desserts: responseBody,
         message: ''
     });
 };
