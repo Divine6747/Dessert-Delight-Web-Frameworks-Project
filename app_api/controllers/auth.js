@@ -53,17 +53,19 @@ const userLogin = async (req, res) => {
             return res.status(400).json({ error: "We couldn't find an account with that username." });
         }
 
-        const isMatch = await user.authenticate(password);
-        if (!isMatch) {
-            return res.status(400).json({ error: "The password you entered is incorrect." });
-        }
-
-        return res.status(200).json({ status: "success" });
+        user.authenticate(password, (err, result) => {
+            if (err || !result) {
+                return res.status(400).json({ error: "The password you entered is incorrect." });
+            }
+            return res.status(200).json({ status: "success" });
+        });
+        
     } catch (err) {
         console.error('Login error:', err);
         return res.status(500).json({ error: "Something went wrong. Please try again later." });
     }
 };
+
 
 module.exports = {
     userRegister,
