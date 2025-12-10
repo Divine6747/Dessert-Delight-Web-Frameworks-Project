@@ -6,7 +6,7 @@ const apiOptions = {
   server: 'http://localhost:3000'
 };
 if (process.env.NODE_ENV === 'production') {
-  apiOptions.server = 'https://web-frameworks-project-xcuw.onrender.com';
+  apiOptions.server = 'https://helloexpree-do-dessert-delight-web.onrender.com';
 }
 
 // Helper function to render the about page
